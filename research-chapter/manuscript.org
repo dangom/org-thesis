@@ -52,7 +52,7 @@ We can have links everywhere.  This [[https://www.gnu.org/software/emacs/][link]
 
 Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
 
-It can contain tables as well, with captions, of course, as seen in ref:example-table.
+It can contain tables as well, with captions, of course, as seen in figure ref:example-table.
 
 #+name: example-table
 #+caption: Table with a custom caption.
@@ -65,7 +65,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit tempo
 
 Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
 
-Results can contain some images as well.
+Results can contain some images as well, as seen in ref:figure-example.
 
 # In this no-op origin tag I just put the name of the code that generated the fig. for bookkeeping.
 #+origin: ~/projects/directory/with/code/that/generated/this/figure.py

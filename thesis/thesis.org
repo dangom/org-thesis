@@ -34,7 +34,7 @@ This work demonstrates how to use Org Mode to write a Ph.D. thesis.
 
 * A Research Chapter
 :PROPERTIES:
-:ALT_TITLE: Pulse Sequence Development for Cognitive Neuroscience
+:ALT_TITLE: Research Chapter
 :END:
 
 #+INCLUDE: "../research-chapter/manuscript.org::*Abstract" :only-contents t
