@@ -1,0 +1,5 @@
+#+MACRO: if-not-latex (eval (unless (org-export-derived-backend-p org-export-current-backend 'latex) "$1"))
+# Print bibliography in other exports that are not LaTeX.
+{{{if-not-latex(bibliographystyle:apalike)}}}
+{{{if-not-latex(bibliography:./ref/bibliography.bib)}}}
+

@@ -1,0 +1,115 @@
+#+TITLE: Writing a Thesis with Org Mode
+#+latex_class: mimosis
+#+latex_header: \KOMAoptions{headings=small,fontsize=12,DIV=12}
+#+setupfile: ./thesis.setup
+#+latex_header: \bibliography{./thesis}
+#+EXCLUDE_TAGS: journal noexport
+
+* Acronym and Glossary :ignore:
+
+# {{{glossaryentry(LaTeX,\LaTeX,A document preparation system,LaTeX)}}}
+# {{{glossaryentry(Real Numbers,$\real$,The set of Real numbers,Real Numbers)}}}
+
+# #+latex_header: \makeglossaries
+
+* Frontmatter :ignore:
+#+BEGIN_EXPORT latex
+\frontmatter
+#+END_EXPORT
+
+#+INCLUDE: ./title.org
+
+* Mainmatter :ignore:
+
+#+BEGIN_EXPORT latex
+\tableofcontents
+\mainmatter
+#+END_EXPORT
+
+* A General Introduction
+
+This work demonstrates how to use Org Mode to write a Ph.D. thesis.
+
+#+INCLUDE: "./introduction/introduction.org" :lines "2-"
+
+* A Research Chapter
+:PROPERTIES:
+:ALT_TITLE: Pulse Sequence Development for Cognitive Neuroscience
+:END:
+
+#+INCLUDE: "../research-chapter/manuscript.org::*Abstract" :only-contents t
+
+{{{fourstar}}}
+#+latex: \noindent
+#+begin_small
+Junior Author & Senior Author.
+#+end_small
+#+latex: \vspace*{\fill}
+#+begin_flushright
+/Contents published as Author et al., Org Science 2019/
+#+end_flushright
+{{{clearpage}}}
+
+#+INCLUDE: "../research-chapter/manuscript.org" :lines "6-"
+
+* Summary and general discussion
+
+#+INCLUDE: "./summary/summary.org" :lines "2-"
+
+
+* Bibliography :ignore:
+
+#+BEGIN_EXPORT latex
+\begingroup
+\sloppy
+\setstretch{1}
+\setlength\bibitemsep{3pt}
+\printbibliography
+\endgroup
+#+END_EXPORT
+
+* Backmatter :ignore:
+
+#+BEGIN_EXPORT latex
+% This ensures that the subsequent sections are being included as root
+% items in the bookmark structure of your PDF reader.
+\bookmarksetup{startatroot}
+\backmatter
+% \begingroup
+%     \let\clearpage\relax
+%     \glsaddall
+%     \printglossary[type=\acronymtype]
+%     \newpage
+%     \printglossary
+% \endgroup
+% \printindex
+#+END_EXPORT
+
+* Appendix :ignore:
+
+#+latex: \appendix
+
+* COMMENT Acknowledgments
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+
+* Build :noexport:
+
+Bind derivatives change variable values *locally* on export.
+
+These two are because I'm defining the title and toc manually using latex, so I don't want org-latex to take care of that.
+#+BIND: org-latex-title-command ""
+#+BIND: org-latex-toc-command ""
+This is so that src code blocks get src highlighting from the minted package.
+#+BIND: org-latex-listings minted
+This beautifies table borders. It will only work if the booktabs package is loaded, which I do in the setup file.
+#+BIND: org-latex-tables-booktabs t
+And this configuration increases the default width of images, so that they are larger and more readable on print.
+#+BIND: org-latex-image-default-width ".97\\linewidth"
+
+# Local Variables:
+# mode: org
+# org-export-allow-bind-keywords: t
+# End:

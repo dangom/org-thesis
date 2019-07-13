@@ -1,0 +1,125 @@
+#  -*- mode: org; -*-
+
+* COMMENT Titlepage regulations
+
+Here some info about the title page. Feel free to add the documentation of your own University as a reminder to self. Comment headings own be exported.
+
+* Relevant Variables                                                 :ignore:
+  #+latex_header: \newcommand{\ThesisTitle}{{Writing a Thesis with Org Mode}}
+  #+latex_header: \newcommand{\ThesisSubTitle}{is nice.}
+  #+latex_header: \newcommand{\FormattedThesisDefenseDate}{\mbox{\formatdate{1}{1}{2100}}}
+  #+latex_header: \newcommand{\FormattedAuthorDateOfBirth}{\mbox{\formatdate{1}{1}{2000}}}
+  #+latex_header: \newcommand{\FormattedThesisDefenseTime}{\mbox{10:00}}
+  #+latex_header: \newcommand{\AuthorShortName}{\mbox{Author}}
+  #+latex_header: \newcommand{\AuthorFullName}{\mbox{The Author}}
+  #+latex_header: \newcommand{\AuthorPlaceOfBirth}{\mbox{Earth}}
+  #+latex_header: \newcommand{\ThesisISBN}{\mbox{}}
+
+* Title Page -- LaTeX                                                :ignore:
+
+  #+BEGIN_EXPORT latex
+  \begin{titlepage}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % First page: Thesis Title and Author Name
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Uncomment when adding the background figure to the cover.
+    %\BgThispage
+
+    \cleardoublepage
+    \pagestyle{empty}
+
+    \begin{center}
+      \null\vfill
+      {\LARGE{\bfseries \ThesisTitle}\par}
+      \vspace{\stretch{0.5}}
+      {\large \ThesisSubTitle \par}
+      \vspace{\stretch{2}}
+      \vspace{\baselineskip}
+      \vspace{\stretch{2}}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\stretch{1}}
+      \vspace{\baselineskip}
+      \vspace{\stretch{1}}
+      {\large\AuthorShortName}\\
+      \vspace{\stretch{1}}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vfill
+    \end{center}
+
+    \clearpage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Second page: Copyright and ISSN Number
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \null
+    \noindent
+    The work presented in the current demonstration could not have been possible without wonderful blog posts on Org mode usage found on the internet, and without the GNU Emacs documentation.
+
+    \vfill
+    \noindent\textcopyright\ \number\year, \AuthorFullName\\
+    \ThesisTitle\\
+    Thesis, GNUniversity, The Earth\\
+    Illustrated; with bibliographic information
+
+    \bigskip
+
+    \cleardoublepage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Fifth page: Defense Information (English)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \pagestyle{empty}
+
+    \begin{center}
+      \null\vfill
+      {\LARGE{\bfseries \ThesisTitle}\par}
+      \vspace{\stretch{0.5}}
+      {\large \ThesisSubTitle \par}
+      \vspace{\stretch{2}}
+      {Doctoral Thesis}\\
+      \vspace{\stretch{2}}
+      to obtain the degree of doctor\\
+      from GNUniversity\\
+      to be defended in public \\
+      on \FormattedThesisDefenseDate\\\
+      at \FormattedThesisDefenseTime\ hours\\
+      \vspace{\stretch{1}}
+      by\\
+      \vspace{\stretch{1}}
+      {\large\AuthorFullName}\\
+      \vspace{\stretch{1}}
+      born on \FormattedAuthorDateOfBirth\\
+      in \AuthorPlaceOfBirth
+      \vfill
+    \end{center}
+
+    \clearpage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Sixth page: Corona Information (English)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \noindent
+    \begin{tabular}{@{}l@{\hspace{22pt}}l}
+      \textbf{Supervisor}:          & Prof.\ dr. Doc Doctor\\
+
+      \\
+      \\
+
+      \textbf{Doctoral Thesis Committee}: & Prof.\ dr.\ Doctor Doc \hspace*{1cm} (chair)  \\ [0.5em]
+                                    & Prof.\ dr.\ Doctor Doctor  \\
+                                    & \hspace*{1cm} \textit{University of VS, not Earth} \\[0.5em]
+                                    & Dr.\ Doctor von Doc  \\
+                                    & \hspace*{1cm} \textit{University of VIM} \\[0.5em]
+
+    \end{tabular}
+    \cleardoublepage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % End Titlepage
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \end{titlepage}
+  #+END_EXPORT
+

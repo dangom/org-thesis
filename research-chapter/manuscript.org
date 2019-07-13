@@ -1,0 +1,96 @@
+#+TITLE: A research chapter
+#+LATEX_CLASS: elsarticle
+#+LATEX_CLASS_OPTIONS: [authoryear,preprint,5p,times,twocolumn,11pt]
+#+SETUPFILE: manuscript.setup
+#+LATEX_HEADER:\bibliography{./ref/bibliography}
+
+* Frontmatter :ignore:journal:
+
+#+LATEX: \begin{frontmatter}
+** Author List :ignore:
+#+BEGIN_EXPORT latex
+\author[add1]{First Author\corref{cor1}}
+\ead{first@author.edu}
+\author[add1,add2]{Senior Author}
+\ead{senior@author.edu}
+
+\address[add1]{Center of Org Studies, GNUniversity, The Earth}
+\address[add2]{Institute of Freedom, The Land of Lisp}
+
+\cortext[cor1]{Corresponding author}
+#+END_EXPORT
+
+** Abstract :ignore:
+
+#+begin_abstract
+This file exemplifies how I write a research chapter with Org Mode.  Bibliographical references are stored in the =/bib= directory and images in =/img=.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit tempor tellus.  Donec pretium posuere tellus.  Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus.  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  Nulla posuere.  Donec vitae dolor.  Nullam tristique diam non turpis.  Cras placerat accumsan nulla.  Nullam rutrum.  Nam vestibulum accumsan nisl.
+#+end_abstract
+
+** Keywords :ignore:
+
+#+begin_keyword
+lorem \sep ipsum \sep dolor \sep sit \sep amet
+#+end_keyword
+
+#+LATEX: \end{frontmatter}
+
+* Introduction
+
+Aliquam erat volutpat. parencite:big Nunc eleifend leo vitae magna, as discussed in cite:small.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
+
+
+* Methods
+
+** Data Acquisition
+
+We can have links everywhere.  This [[https://www.gnu.org/software/emacs/][link]], for example, points to the Emacs website.
+
+Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+
+It can contain tables as well, with captions, of course, as seen in ref:example-table.
+
+#+name: example-table
+#+caption: Table with a custom caption.
+| foo | bar | baz |
+|   1 |   2 |   3 |
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit.  Donec hendrerit tempor tellus.  Donec pretium posuere tellus.  Proin quam nisl, tincidunt et, mattis eget, convallis nec, purus.  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  Nulla posuere.  Donec vitae dolor.  Nullam tristique diam non turpis.  Cras placerat accumsan nulla.  Nullam rutrum.  Nam vestibulum accumsan nisl.
+
+* Results
+
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
+
+Results can contain some images as well.
+
+# In this no-op origin tag I just put the name of the code that generated the fig. for bookkeeping.
+#+origin: ~/projects/directory/with/code/that/generated/this/figure.py
+#+name: figure-example
+#+caption: This is an example figure.
+[[./img/img.png]]
+
+* Conclusion
+
+Awesome.
+
+* Acknowledgements :journal:
+
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+
+* Bibliography :ignore:journal:
+
+  #+BEGIN_EXPORT latex
+  \printbibliography
+  #+END_EXPORT
+
+  #  For HTML export.  Just a hack to avoid triggering org-ref's regexp search.
+  #+INCLUDE: ./ref/bib-html-setup.org
+
+* Build                                                            :noexport:
+
+Feel free to add some more config in here, if necessary.  This can be useful if you want to use a single =paper.setup=, but still want some per file configuration.

@@ -1,0 +1,317 @@
+# -*- mode: org; -*-
+# Daniel Gomez
+#  Ph.D. Thesis Org Mode + LaTeX thesis.setup
+
+* Org Mode Export Options :noexport:
+
+** Macros
+#+MACRO: acronym #+latex_header: \newacronym[description={$1}]{$2}{$2}{$3}
+#+MACRO: glossaryentry #+latex_header: \newglossaryentry{$1}{name={$2},description={$3},sort={$4}}
+#+MACRO: newline @@latex:\hspace{0pt}\\@@ @@html:<br>@@
+#+MACRO: fourstar @@latex:\bigskip{\centering\color{BrickRed}\FourStar\par}\bigskip@@
+#+MACRO: clearpage @@latex:\clearpage@@@@odt:<text:p text:style-name="PageBreak"/>@@
+
+** Options
+#+OPTIONS: toc:nil  H:4 tags:nil
+
+* LaTeX Export Headers and Options :noexport:
+
+** Geometry
+
+The thesis page size should be 17,21 cm vs 24,41 cm.
+# #+latex_header: \usepackage[paperheight=24.41cm,paperwidth=17.21cm,bottom=3cm,left=1.4cm,right=2cm,heightrounded]{geometry}
+But instead of setting it manually, I can leave it at A4 size and have the printshop reduce the A4 to 81%.
+
+** Floating images configuration
+
+By default,  if a figure consumes 60% of the page it will get its own float-page. To change that we have to adjust the value of the floatpagefraction derivative.
+#+latex_header: \renewcommand{\floatpagefraction}{.8}%
+
+See more information [[https://tex.stackexchange.com/questions/68516/avoid-that-figure-gets-its-own-page][here]].
+
+** Etoolbox package
+#+latex_header: \usepackage{etoolbox}
+
+** SI Units X package
+
+The siunitx package is already required and configured properly in the mimosis class.
+# #+latex_header: \usepackage[binary-units=true]{siunitx}
+#+latex_header: \DeclareSIUnit\px{px}
+
+This package allows setting SI units using the SI macro. It ensures that no line breaks happen between numbers and their units.
+
+** Hyperref
+
+Self-explanatory.
+#+latex_header: \usepackage[colorlinks=true, citecolor=BrickRed, linkcolor=BrickRed, urlcolor=BrickRed]{hyperref}
+
+** Bookmarks
+
+The bookmark package implements a new bookmark (outline) organisation for package hyperref. This lets us change the "tree-navigation" associated with the generated pdf and constrain the menu only to H:2.
+#+latex_header: \usepackage{bookmark}
+#+latex_header: \bookmarksetup{depth=2}
+
+** BBding
+
+Symbols such as diamond suit, which can be used for aesthetically separating paragraphs, could be added with the package =fdsymbol=. I'll use bbding which offers the more visually appealing =\FourStar=. I took this idea from seeing the thesis of the mimosis package author.
+#+latex_header: \usepackage{bbding}
+
+** CS Quotes
+
+The [[https://ctan.org/pkg/csquotes][csquotes]] package offers context sensitive quotation facilities, improving the typesetting of inline quotes.
+
+Already imported by mimosis class.
+# #+latex_header: \usepackage{csquotes}
+
+To enclose quote environments with quotes from csquotes, see [[https://tex.stackexchange.com/questions/365231/enclose-a-custom-quote-environment-in-quotes-from-csquotes][the following TeX SE thread]].
+
+#+latex_header: \def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip1em
+#+latex_header:   \hbox{}\nobreak\hfill #1%
+#+latex_header:   \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+#+latex_header: \newsavebox\mybox
+#+latex_header: \newenvironment{aquote}[1]
+#+latex_header: {\savebox\mybox{#1}\begin{quote}\openautoquote\hspace*{-.7ex}}
+#+latex_header:    {\unskip\closeautoquote\vspace*{1mm}\signed{\usebox\mybox}\end{quote}}
+
+And then use quotes as:
+#+begin_example
+# The options derivative adds text after the environment. We use it to add the author.
+#+ATTR_LATEX: :options {\cite{Frahm1994}}
+#+begin_aquote
+/Current (fMRI) applications often rely on "effects" or "statistically significant differences", rather than on a proper analysis of the relationship between neuronal activity, haemodynamic consequences, and MRI physics./
+#+end_aquote
+#+end_example
+
+Note that org-ref links won't work here because the attr latex will be pasted as-is in the .tex file.
+
+** Hyphenat
+
+Words that have are manually hyphenated do not hyphenate. The fix is to use the hyphenate package and use \hyp instead of -.
+#+latex_header: \usepackage{hyphenat}
+#+latex_header: \hyphenation{deoxy-hemo-glo-bin}
+#+latex_header: \hyphenation{Sie-mens}
+#+latex_header: \hyphenation{multi-band multi-echo}
+
+** Date Time
+
+The date time package allows us to specify a "formatted" date object, which will print different formats according to the current locale & language. I use this in my title page.
+#+latex_header: \usepackage[level]{datetime}
+
+** BibLaTeX
+
+General configuration.
+#+latex_header: \usepackage[autocite=plain, backend=biber, doi=true, url=true, hyperref=true,uniquename=false, maxbibnames=99, maxcitenames=2, sortcites=true, style=authoryear-comp]{biblatex}
+
+Improvements provided with the Mimosis class.
+#+latex_header: \input{bibliography-mimosis}
+
+# And fix the andothers to show et al in English as well:
+# #+latex_header: \DefineBibliographyStrings{english}{andothers={\textit{et\, al\adddot}}} 
+# #+latex_header:\DefineBibliographyStrings{english}{and={\textit{and}}}} 
+
+
+Remove ISSN, DOI and URL to shorten the bibliography.
+#+latex_header: \AtEveryBibitem{%
+#+latex_header:   \clearfield{urlyear}
+#+latex_header:   \clearfield{urlmonth}
+#+latex_header:   \clearfield{note}
+#+latex_header:  \clearfield{issn} % Remove issn
+#+latex_header:  \clearfield{doi} % Remove doi
+#+latex_header: \ifentrytype{online}{}{% Remove url except for @online
+#+latex_header:   \clearfield{url}
+#+latex_header: }
+#+latex_header: }
+
+And increase the spacing between the entries, as per default they are too small.
+#+latex_header: \setlength\bibitemsep{1.1\itemsep}
+
+Also reduce the font-size
+#+latex_header: \renewcommand*{\bibfont}{\footnotesize}
+
+** Fonts: Libertine, Garamond and Source Code Pro
+
+The sf font is a nice sans serif font for tables.
+#+latex_header: \usepackage[sf,scaled=0.9]{quattrocento}
+#+latex_header: \ifxetexorluatex
+#+latex_header:   \setmainfont{Minion Pro}
+#+latex_header: \else
+# #+latex_header:   \usepackage[lf]{ebgaramond}
+Minion Pro has to be installed for this to work. See instructions below.
+#+latex_header: \usepackage[]{MinionPro}
+
+The Source Code Pro font for code.
+#+latex_header: \usepackage[oldstyle, scale=0.7]{sourcecodepro}
+# #+latex_header:   \singlespacing
+#+latex_header: \fi
+#+latex_header: \setkomafont{sectioning}{\normalfont\bfseries}
+
+** Fix the th for dates.
+#+latex_header: \renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
+
+** Improve chapter font colors and font size
+
+The following commands make chapter numbers BrickRed, which look like the Donders color.
+#+latex_header: \makeatletter
+#+latex_header: \renewcommand*{\chapterformat}{  \mbox{\chapappifchapterprefix{\nobreakspace}{\color{BrickRed}\fontsize{40}{45}\selectfont\thechapter}\autodot\enskip}}
+#+latex_header: \renewcommand\@seccntformat[1]{\color{BrickRed} {\csname the#1\endcsname}\hspace{0.3em}}
+#+latex_header: \makeatother
+
+** Define a new dummy abstract environment 
+
+Because some of the publications were written using the Elsevier =elsarticle= class, which provides an abstract env, we need to define a dummy one for the thesis as well so that INCLUDEs don't break. This here is an important part of getting the thesis/part multi-setup working. This would not be required for html exports, as "abstract" would end up as a div class, and that's ok if there is no CSS targetting it. For LaTeX, non-existing envrionments lead to compilation failure.
+
+#+latex_header: \newenvironment*{abstract}{}{}
+
+** Setspace for controlling line spacing
+
+Already imported when using mimosis.
+# #+latex_header: \usepackage{setspace}
+#+latex_header: \setstretch{1.25} 
+
+** Parskip
+
+Fine tuning of spacing between paragraphs. See [[https://tex.stackexchange.com/questions/161254/smaller-parskip-than-half-for-koma-script][thread here]].
+
+#+latex_header: \setparsizes{0em}{0.1\baselineskip plus .1\baselineskip}{1em plus 1fil}
+
+** Table of Contents improvements
+
+TOC only the chapters, not their content.
+#+latex_header: \setcounter{tocdepth}{1}
+
+** Thesis specific commands to monkey-patch paper commands.
+
+I added this commands because I was using them with the PNAS class. 
+#+latex_header: \newcommand{\dropcap}[1]{#1}
+#+latex_header: \newcommand{\matmethods}[1]{#1}
+#+latex_header: \newcommand{\showmatmethods}[1]{}
+#+latex_header: \newcommand{\acknow}[1]{#1}
+#+latex_header: \newcommand{\showacknow}[1]{}
+#+latex_header: \newcommand{\thesisnoop}[1]{}
+
+** Table improvements (reduce font and make sans serif)
+
+I reduce the size of tables so that longer tables can still fit into an A4.
+#+latex_header: \usepackage{floatrow}
+#+latex_header: \floatsetup[table]{font={footnotesize,sf},capposition=top}
+
+** Possible Equation improvements
+
+Make the equation numbers follow the chapter, not the whole thesis.
+#+latex_header: \numberwithin{equation}{chapter}
+
+** Minted
+
+The minted package is used for highlighting source code.
+#+latex_header: \usepackage{listings}
+#+latex_header: \usepackage{minted}
+#+latex_header: \setminted{autogobble=true,fontsize=\small,baselinestretch=0.8}
+#+latex_header: \setminted[python]{python3=true,tabsize=4}
+#+latex_header: \usemintedstyle{trac}
+#+latex_header: \lstset{abovecaptionskip=0}
+
+Also make the listing numbers follow the chapter, not the whole thesis.
+#+latex_header: \numberwithin{listing}{chapter}
+And reduce the distance between a minted listing and its caption.
+# #+latex_header: \captionsetup[listing]{skip=-10pt}
+#+latex_header: \renewcommand{\listingscaption}{Code Snippet}
+# This here is to bring the caption closer to the environment.
+#+latex_header: \AtEndEnvironment{listing}{\vspace{-16pt}}
+# #+latex_header: \captionsetup{skip=-20pt}
+
+** Scrhack
+
+This package fixes some incompatibility errors between KOMAScript and other packages (namely minted). It has to be loaded at the  end.
+#+latex_header: \usepackage{scrhack}
+
+** COMMENT Background cover page
+
+Add the cover image as background to the first page. Only do so when outputting a final version, because it significantly slows down the compilation times.
+
+# #+latex_header: \usepackage[pages=some]{background}
+# #+latex_header: \backgroundsetup{
+# #+latex_header: scale=1,
+# #+latex_header: color=black,
+# #+latex_header: opacity=0.9,
+# #+latex_header: angle=0,
+# #+latex_header: contents={%
+# #+latex_header:   \includegraphics[width=\paperwidth,height=\paperheight]{/Users/user/Desktop/TectonicPlatesXVI.png}
+# #+latex_header:   }%
+# #+latex_header: }
+
+* COMMENT Thesis Writing Org Mode Setup
+
+A PhD thesis in the Netherlands consists more or less of a title page, an introduction, a collection of publications gathered as Chapters, and a summary in Dutch. the graduate student makes stylistic choices on how to format it.
+I chose to use Org Mode's markup language to write my thesis, since it offers direct export facilities to LaTeX but does not require me to remember details from the arcane LaTeX syntax. In addition, it keeps track of headings and references in the background, so that i don't have to do that myself.
+
+The setup consists of a thesis.org file. Here we define the org and latex setup for the complete thesis and write glue code to include separate chapters. The magic here is that the chapters may be compiled on its own for submission, independent of the thesis. This gives us quite a bit of flexibility and modularity. 
+
+
+** Installation
+ The complete setup requires only the following steps:
+
+*** Install latex-mimosis
+
+ Latex-mimosis is a KOMA derived minimal LaTeX template class. To install it we only have to clone [[https://github.com/Submanifold/latex-mimosis][the original repository]]. 
+ To make the files visible by our TeX installation, we can put them (the .cls file and the bibliography setup files) in the following directory:
+
+ #+BEGIN_SRC sh :eval never
+ kpsewhich -var-value=TEXMFHOME
+ #+END_SRC
+
+ #+RESULTS:
+ : /Users/user/Library/texmf
+
+ And then run =texhash $DIR=, where =$DIR= is the directory returned by the command above.
+ Alternatively the class file can be place in the same directory as the main =Thesis.org= document.
+
+*** Create the thesis directory and main files
+
+ The thesis directory has to contain a main thesis.org file, a thesis.setup file (a copy of this file), and the subdirectories with the chapters.
+
+*** Add the mimosis class to your Emacs
+
+ The following code makes the org-latex export aware of the mimosis class. It also configures it so that headings start at chapter, followed by sections, subsections, etc.
+ #+BEGIN_SRC emacs-lisp :eval never
+ (add-to-list 'org-latex-classes
+                  '("mimosis"
+                    "\\documentclass{mimosis}
+  [NO-DEFAULT-PACKAGES]
+  [PACKAGES]
+  [EXTRA]"
+                    ("\\chapter{%s}" . "\\addchap{%s}")
+                    ("\\section{%s}" . "\\section*{%s}")
+                    ("\\subsection{%s}" . "\\subsection*{%s}")
+                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+ #+END_SRC
+
+ Note that to be able to use subsubsections and lower hierarchical levels we have to change an export variable called =org-export-headline-levels=. Every level below what is defined by said variable will be exported within an enumeration environment, i.e., as a list. This is why we set the option H:4 in this setup file.
+
+** Usage
+
+
+*** Contextual export
+
+As mentioned before, a PhD thesis in the Netherlands is composed of thesis specific content plus a collection of journal publications, each of which consists of chapter.
+That means that ideally we'd like to be able to reuse the same content (org mode file)  but exclude or modify certain parts depending on whether the file is being used to generate a journal report or being included in the thesis.
+
+To achieve that, this thesis package proposes the following convention:
+
+The main Thesis.org file will not export any headline with a tag of =:journal:=.
+Therefore, to selectively exclude a heading from the thesis, simply mark it as =:journal:=. 
+A usage example is to avoid printing bibliography multiple times, or to avoid including journal specific frontmatter into the thesis.
+
+Another issue pertaining contextual export relates to relative file paths, especially those pointing to images that are included in each Chapter. To solve this problem and have Org Mode correctly adapt paths independent of where the files get included from, I've had to "monkey-patch" some of Org's include functions. This means that, if you are not willing to monkey-patch your Org, you'll have to write absolute paths for all figures to be included.
+
+The [[https://code.orgmode.org/bzg/org-mode/commit/d81a1d088c74e605c99e90a2835c55df5144f43e][patch has landed]] in Org mode master, so no need for further monkey-patching.
+
+** Fonts
+
+To install the MinionPro fonts used in the current thesis, please refer to https://github.com/sebschub/FontPro.
+
+* COMMENT Org Mode Thesis Structuring Decisions
+
+I decided to use =:ignore:= headers to define Frontmatter, Mainmatter and Backmatter because this makes the ox-latex parser work without annoyances. If I remove these headings then some LATEX exports fail to appear. This may be a bug, but I'm happy to work around it for now.

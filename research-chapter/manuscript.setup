@@ -1,0 +1,49 @@
+# -*- mode: org; -*-
+#+STARTUP: content
+
+* COMMENT Paper Setup
+
+The paper setup controls the export of content for publication. Using a dedicated paper setup makes it simpler to include the content later in a thesis, simply by swapping or ignoring the setup of the individual file and using and overarching =thesis.setup=.
+Additionally, for publication we can remove any setup at all to get a clean export using whatever class provided by the publisher. If NeuroImage is the target, for example, then we should use the elsarticle class. Support for multiple classes for publication, within Emacs Org-Mode, can be found [[https://github.com/jkitchin/scimax/blob/master/ox-manuscript/ox-manuscript.el][in the scimax starters package]].
+To make the main file inclusion simpler, only use the first 5 lines of the paper file for extra configuration. All the rest should go in the setup file.
+
+Remember that #+OPTIONS are parsed even from =:noexport:= headings.
+
+* Options :noexport:
+
+The options are intended to remove default clutter that Org adds automatically to the export.
+#+OPTIONS: title:nil date:nil ^:{} toc:nil num:nil d:t author:nil tags:nil
+
+* LaTeX headers :noexport:
+
+#+latex_header: \usepackage[T1]{fontenc}
+#+latex_header: \usepackage[utf8]{inputenc}
+#+latex_header: \DeclareUnicodeCharacter{200B}{}
+#+latex_header: \usepackage{booktabs}
+#+latex_header: \renewcommand{\arraystretch}{1.1}
+#+latex_header: \usepackage{graphicx}
+#+latex_header: \usepackage{float}
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage[linktocpage, pdfstartview=FitH, colorlinks, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, urlcolor=black]{hyperref}
+#+latex_header: \usepackage[autocite=plain, backend=biber, doi=true, url=false, hyperref=true, style=apa, maxcitenames=2]{biblatex}
+#+latex_header: \AtEveryBibitem{%
+#+latex_header:  \clearfield{issn} % Remove issn
+#+latex_header:  \clearfield{doi} % Remove doi
+#+latex_header: \ifentrytype{online}{}{% Remove url except for @online
+#+latex_header:   \clearfield{url}
+#+latex_header: }
+#+latex_header: }
+#+latex_header: \usepackage[binary-units=true]{siunitx}
+#+latex_header: \DeclareSIUnit\px{px}
+#+latex_header: \usepackage{textcomp}% for '\textdegree' macro
+
+
+* HTML headers :noexport:
+
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+
+#+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+#+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>

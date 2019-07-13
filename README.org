@@ -1,0 +1,32 @@
+#+TITLE: Org-thesis
+#+AUTHOR: Daniel Gomez
+
+* Introduction
+
+This repository contains the skeleton of a Ph.D. thesis written in Org Mode. It does not aim to be an authoritative guide on writing thesis with Org Mode, i.e.,  it only represents the solution that I found most convenient within the time frame of my Ph.D.
+
+The goal of this setup was to allow the seamless inclusion of research chapters into the thesis *without* having to modify the included files at all. In other words, chapters can live as standalone repositories with completely different export settings. In other words, this setup separates content from form and allows content to move freely between the thesis and a chapter.
+
+* Installation & Requirements
+
+You will need at least Emacs 26 and Org 9.2 for this to work because it relies on Org's #+INCLUDE derivative, which is broken for files containing relative paths and links in earlier versions. You will also need a recent version of LaTeX. Details on my LaTeX setup are described in the [[./latex-setup.org]] file in the root of this repository. The information was extracted automatically using =scimax-latex.el=. Information about scimax-latex is also described in the end of the latex setup file.
+You will also need org-ref for links to equations and citations to work as expected.
+And to compile the thesis as is you'd require the [[https://github.com/Pseudomanifold/latex-mimosis][mimosis]] latex class. It'll probably work if  you change class, but YMMV.
+
+* Usage
+
+More usage details can be found under [[https://write.as/dani/writing-a-phd-thesis-with-org-mode][this blog post.]] For more information, feel free to open an issue.
+
+* Possible improvements
+
+** Repository maybe tied to my class choices?
+
+The setup files and LaTeX classes seen here are those that I use. It'd be nice to have a more minimalistic example that didn't require such dependencies.
+
+** Bibliography management
+
+Currently the bibliography management is not properly modular. I use Zotero for bibliography management and I have Zotero export a master file for the thesis and individual files for each chapter. It works well, but I cannot simply include a new chapter into the thesis without first adapting Zotero as well
+
+** Manual management of lines to skip
+
+For each included file, I skip LaTeX derivatives by constraining the number of lines to be included. This is manual work and couple probably be improved.

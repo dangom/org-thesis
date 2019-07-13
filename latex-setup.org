@@ -1,0 +1,155 @@
+#+TITLE: LaTeX setup
+
+This file describes how LaTeX is setup on your computer.
+
+* Executables
+
+latex: /Library/TeX/texbin/latex
+pdflatex: /Library/TeX/texbin/pdflatex
+bibtex: /Library/TeX/texbin/bibtex
+biber: /Library/TeX/texbin/biber
+
+tlmgr: /Library/TeX/texbin/tlmgr
+kpsewhich: /Library/TeX/texbin/kpsewhich
+texdoc: /Library/TeX/texbin/texdoc
+
+Configuration:
+texmf configuration values (from /usr/local/texlive/2016/texmf.cnf):
+TEXMFVAR = ~/Library/texlive/2016/texmf-var
+TEXMFHOME = ~/Library/texmf
+TEXMFCONFIG = ~/Library/texlive/2016/texmf-config
+
+
+* Latex classes org-mode knows about
+
+Here are some relevant variables
+help:org-format-latex-header
+help:org-latex-default-packages-alist
+help:org-latex-packages-alist
+help:org-latex-pdf-process
+
+Note: Not every class has a corresponding style file. Click on the texdoc link to learn more about the class.
+
+Missing files should be installed in the TEXMFHOME directory listed above. See https://en.wikibooks.org/wiki/LaTeX/Installing_Extra_Packages for help.
+
+
+** elsarticle creates documents with this LaTeX documentclass: elsarticle
+This is the header that is expanded.
+
+\documentclass{elsarticle}
+ [NO-DEFAULT-PACKAGES]
+ [PACKAGES]
+ [EXTRA]
+
+LaTeX path for class: [[/usr/local/texlive/2016/texmf-dist/tex/latex/elsarticle/elsarticle.cls]]
+
+ [[elisp:(shell-command "texdoc elsarticle"][texdoc elsarticle]]
+
+Latex style path: [[]]
+ 
+
+** mimosis creates documents with this LaTeX documentclass: mimosis
+This is the header that is expanded.
+
+\documentclass{mimosis}
+ [NO-DEFAULT-PACKAGES]
+ [PACKAGES]
+ [EXTRA]
+\newcommand{\mboxparagraph}[1]{\paragraph{#1}\mbox{}\\}
+\newcommand{\mboxsubparagraph}[1]{\subparagraph{#1}\mbox{}\\}
+
+LaTeX path for class: [[/Users/user/Library/texmf/tex/latex/local/mimosis.cls]]
+
+ [[elisp:(shell-command "texdoc mimosis"][texdoc mimosis]]
+
+Latex style path: [[]]
+ 
+
+** mimore creates documents with this LaTeX documentclass: mimore
+This is the header that is expanded.
+
+\documentclass{mimore}
+ [NO-DEFAULT-PACKAGES]
+ [PACKAGES]
+ [EXTRA]
+
+LaTeX path for class: [[/Users/user/Library/texmf/tex/latex/local/mimore.cls]]
+
+ [[elisp:(shell-command "texdoc mimore"][texdoc mimore]]
+
+Latex style path: [[]]
+ 
+
+** article creates documents with this LaTeX documentclass: article
+This is the header that is expanded.
+
+\documentclass[11pt]{article}
+
+LaTeX path for class: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls]]
+
+ [[elisp:(shell-command "texdoc article"][texdoc article]]
+
+Latex style path: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.sty]]
+ 
+
+** report creates documents with this LaTeX documentclass: report
+This is the header that is expanded.
+
+\documentclass[11pt]{report}
+
+LaTeX path for class: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/report.cls]]
+
+ [[elisp:(shell-command "texdoc report"][texdoc report]]
+
+Latex style path: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/report.sty]]
+ 
+
+** book creates documents with this LaTeX documentclass: book
+This is the header that is expanded.
+
+\documentclass[11pt]{book}
+
+LaTeX path for class: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/book.cls]]
+
+ [[elisp:(shell-command "texdoc book"][texdoc book]]
+
+Latex style path: [[/usr/local/texlive/2016/texmf-dist/tex/latex/base/book.sty]]
+ 
+* org-mode default latex packages
+
+- inputenc (options=AUTO) [[elisp:(shell-command "texdoc inputenc"][texdoc inputenc]]
+- fontenc (options=T1) [[elisp:(shell-command "texdoc fontenc"][texdoc fontenc]]
+- graphicx (options=) [[elisp:(shell-command "texdoc graphicx"][texdoc graphicx]]
+- grffile (options=) [[elisp:(shell-command "texdoc grffile"][texdoc grffile]]
+- longtable (options=) [[elisp:(shell-command "texdoc longtable"][texdoc longtable]]
+- wrapfig (options=) [[elisp:(shell-command "texdoc wrapfig"][texdoc wrapfig]]
+- rotating (options=) [[elisp:(shell-command "texdoc rotating"][texdoc rotating]]
+- ulem (options=normalem) [[elisp:(shell-command "texdoc ulem"][texdoc ulem]]
+- amsmath (options=) [[elisp:(shell-command "texdoc amsmath"][texdoc amsmath]]
+- textcomp (options=) [[elisp:(shell-command "texdoc textcomp"][texdoc textcomp]]
+- amssymb (options=) [[elisp:(shell-command "texdoc amssymb"][texdoc amssymb]]
+- capt-of (options=) [[elisp:(shell-command "texdoc capt-of"][texdoc capt-of]]
+- hyperref (options=) [[elisp:(shell-command "texdoc hyperref"][texdoc hyperref]]
+
+* org-mode defined latex packages
+
+
+
+* org-mode LaTeX compiling setup
+
+org-latex-pdf-process = "(latexmk -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -bibtex -f %f)"
+
+* Generate LaTeX setup
+
+Install scimax-latex and then run =scimax-latex-setup=.
+
+#+begin_src emacs-lisp
+(use-package scimax-latex
+  :straight (scimax-latex :type git
+                          :host github
+                          :repo "jkitchin/scimax"
+                          :files ("scimax-latex.el"))
+  :commands (scimax-latex-setup
+             kpsewhich
+             texdoc))
+#+end_src
