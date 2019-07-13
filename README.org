@@ -7,6 +7,8 @@ This repository contains the skeleton of a Ph.D. thesis written in Org Mode. It 
 
 The goal of this setup was to allow the seamless inclusion of research chapters into the thesis *without* having to modify the included files at all. In other words, chapters can live as standalone repositories with completely different export settings. In other words, this setup separates content from form and allows content to move freely between the thesis and a chapter.
 
+To see how this works check out both the thesis pdf under  [[./thesis/thesis.pdf]] and an individual manuscript as a standalone under [[./research-chapter/manuscript.pdf]].
+
 * Installation & Requirements
 
 You will need at least Emacs 26 and Org 9.2 for this to work because it relies on Org's #+INCLUDE derivative, which is broken for files containing relative paths and links in earlier versions. You will also need a recent version of LaTeX. Details on my LaTeX setup are described in the [[./latex-setup.org]] file in the root of this repository. The information was extracted automatically using =scimax-latex.el=. Information about scimax-latex is also described in the end of the latex setup file.
