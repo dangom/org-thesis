@@ -30,8 +30,13 @@ The goal of this setup was to allow the seamless inclusion of research chapters 
 To see how an example of what the final pdf exports could look like check out both the thesis pdf under  [[./thesis/thesis.pdf]] and an individual manuscript as a standalone under [[./research-chapter/manuscript.pdf]]. Notice how the same content from the same file is used in both pdf exports and end up with completely different formatting.
 
 * Mandatory Screenshots
+Example Org file with content to be exported:
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+#+name: thesis-screenshot
+#+caption: Screenshot of what the Org file look like.
+[[screenshots/org-example.png]]
 
-Example thesis pages:
+Content exported to thesis:
 #+ATTR_HTML: :style margin-left: auto; margin-right: auto;
 #+name: thesis-screenshot
 #+caption: Screenshot of what thesis pages could look like.
