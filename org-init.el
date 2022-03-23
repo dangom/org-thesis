@@ -78,7 +78,10 @@
 ;; depend on Org, they will not accidentally cause the Emacs-provided
 ;; (outdated and duplicated) version of Org to be loaded before the
 ;; real one is registered.
-(use-package org-plus-contrib)
+(use-package org
+  :ensure org-contrib)
+;; Here we guarantee that org mode gets loaded properly.
+(use-package org-contrib)
 ;; Here we guarantee that org mode gets loaded properly.
 
 (use-feature org
