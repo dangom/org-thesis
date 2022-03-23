@@ -385,6 +385,7 @@ Use a prefix arg to get regular RET. "
 ;; The `org-ref' package adds functionality to manage, insert and navigate
 ;; citations (and other references as well, such as equations) within Org mode.
 (use-package org-ref
+  :straight (org-ref :type git :host github :repo "jkitchin/org-ref" :branch "org-ref-2")
   :after org
   :demand t ;; Ensure that it loads so that links work immediately.
   :config
